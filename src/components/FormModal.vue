@@ -1,34 +1,3 @@
-<template>
-  <div v-if="show" class="modal-overlay" @click.self="$emit('close')">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>{{ mode === 'add' ? 'Add New' : 'Edit' }} {{ title }}</h2>
-        <button class="close-btn" @click="$emit('close')">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-
-      <form @submit.prevent="$emit('submit', formData)">
-        <div class="form-group" v-for="field in fields" :key="field.key">
-          <label>{{ field.label }}</label>
-          <input
-            v-model="formData[field.key]"
-            :type="field.type || 'text'"
-            :required="field.required"
-          />
-        </div>
-
-        <div class="form-actions">
-          <button type="button" class="btn-secondary" @click="$emit('close')">Cancel</button>
-          <button type="submit" class="btn-primary">
-            {{ mode === 'add' ? 'Create' : 'Save Changes' }}
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</template>
-
 <script>
 export default {
   props: {
@@ -53,6 +22,34 @@ export default {
   },
 }
 </script>
+
+<template>
+  <div v-if="show" class="modal-overlay" @click.self="$emit('close')">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>{{ title }}</h2>
+      </div>
+
+      <form @submit.prevent="$emit('submit', formData)">
+        <div class="form-group" v-for="field in fields" :key="field.key">
+          <label>{{ field.label }}</label>
+          <input
+            v-model="formData[field.key]"
+            :type="field.type || 'text'"
+            :required="field.required"
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" @click="$emit('close')">Cancel</button>
+          <button type="submit" class="btn-primary">
+            {{ mode === 'add' ? 'Create' : 'Save Changes' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .modal-overlay {
@@ -79,7 +76,7 @@ export default {
 
 .modal-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 1.5rem;
 }

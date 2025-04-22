@@ -1,25 +1,3 @@
-<template>
-  <div class="search-bar">
-    <div class="search-inputs">
-      <select v-model="selectedField" class="field-select">
-        <option value="">All Fields</option>
-        <option v-for="field in searchableFields" :key="field.key" :value="field.key">
-          {{ field.label }}
-        </option>
-      </select>
-      <input
-        type="text"
-        :placeholder="placeholder"
-        v-model="searchQuery"
-        @input="$emit('update:modelValue', searchQuery)"
-      />
-      <button @click="$emit('search')" class="search-button">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
-  </div>
-</template>
-
 <script>
 export default {
   props: {
@@ -42,6 +20,25 @@ export default {
 }
 </script>
 
+<template>
+  <div class="search-bar">
+    <div class="search-inputs">
+      <select v-model="selectedField" class="field-select">
+        <option value="">Any</option>
+        <option v-for="field in searchableFields" :key="field.key" :value="field.key">
+          {{ field.label }}
+        </option>
+      </select>
+      <input
+        type="text"
+        :placeholder="placeholder"
+        v-model="searchQuery"
+        @input="$emit('update:modelValue', searchQuery)"
+      />
+    </div>
+  </div>
+</template>
+
 <style scoped>
 .search-inputs {
   display: flex;
@@ -51,7 +48,6 @@ export default {
 
 .field-select {
   padding: 8px;
-  border: 1px solid #ddd;
   border-radius: 4px;
   background: white;
 }
@@ -59,20 +55,6 @@ export default {
 input {
   flex: 1;
   padding: 8px 12px;
-  border: 1px solid #ddd;
   border-radius: 4px;
-}
-
-.search-button {
-  padding: 8px 16px;
-  background: #2196f3;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.search-button:hover {
-  background: #1976d2;
 }
 </style>

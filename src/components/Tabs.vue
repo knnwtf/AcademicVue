@@ -1,3 +1,13 @@
+<script>
+export default {
+  props: {
+    tabs: Array,
+    activeTab: String,
+  },
+  emits: ['update:activeTab'],
+}
+</script>
+
 <template>
   <div class="tabs-container">
     <div class="tabs-header">
@@ -15,16 +25,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    tabs: Array,
-    activeTab: String,
-  },
-  emits: ['update:activeTab'],
-}
-</script>
 
 <style scoped>
 .tabs-header {
